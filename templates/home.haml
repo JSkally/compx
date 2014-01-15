@@ -1,0 +1,7 @@
+%html
+  %h1 Hello {{ profile or 'World' }}!
+  %ol
+    -for item in items
+      %li
+        {{ item }}
+
