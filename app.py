@@ -12,10 +12,13 @@ def get_news_items():
 
   class NewsItem(object):
 
+    # This is the initiator of the class. This is the 1st thing that will be
+    # called when the class is invoked.
     def __init__(self, title, date_created):
       self.title = title
       self.date_created = date_created
 
+    # This function allows a string to be displayed when the class is printed.
     def __str__(self):
       return 'News item: %s' % self.title
 
@@ -26,13 +29,18 @@ def get_current_profile():
   return session.get('username')
 
 def render_template(template_name, data):
+
+  # Gets the current location of this file.
   app_root = os.path.dirname(__file__)
+
+  # Adds /templates to the current directory.
   template_root = os.path.join(app_root, 'templates')
   env = Environment(extensions=[HamlExtension], loader=
     FileSystemLoader(template_root))
   template = env.get_template(template_name)
   return template.render(data)
 
+# `home` is the function that is mapped on to the `/` route.
 @app.route('/')
 def home():
   items = get_news_items()
